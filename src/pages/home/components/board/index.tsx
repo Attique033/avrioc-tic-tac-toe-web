@@ -1,11 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import Cell from "../cell";
 import {useAppSelector} from "../../../../store";
 import {RootState} from "../../../../store/types";
 import FirstMoveModal from "../first-move-modal";
 
 const Board = () => {
-    const {board, sessionId} = useAppSelector((state: RootState) => state.game);
+    const {board,} = useAppSelector((state: RootState) => state.game);
     const [showFirstMoveModal, setShowFirstMoveModal] = useState(false);
 
     const playBoard = board.flat(1);
@@ -24,12 +24,12 @@ const Board = () => {
                               invalidSessionClick={() => setShowFirstMoveModal(true)}/>
                     ))}
                 </div>
-                {sessionId && (<button
+                <button
                     onClick={resetGame}
                     className="w-full bg-purple-500 backdrop-blur-sm hover:bg-purple-700 hover:text-red font-semibold mt-6 py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                 >
                     Start new game
-                </button>)}
+                </button>
             </div>
         </div>
     );

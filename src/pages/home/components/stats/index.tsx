@@ -1,23 +1,38 @@
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo} from "react";
 import {useAuthActions} from "../../../../store/auth/useAuthActions.ts";
 import {useStatsActions} from "../../../../store/stats/useStatsActions.ts";
 import {useAppSelector} from "../../../../store";
 import {RootState} from "../../../../store/types";
 import {getUserData} from "../../../../utils/storage/Auth.ts";
-import {Player} from "../../../../types";
+import {GameStatus, Player} from "../../../../types";
 
 const Stats = () => {
 
-    const {totalGames, wins, losses, draws} = useAppSelector((state: RootState) => state.stats)
-    const {winner} = useAppSelector((state: RootState) => state.game)
+    const {totalGames, wins, losses, draws,} = useAppSelector((state: RootState) => state.stats)
+    const {winner, status, sessionId} = useAppSelector((state: RootState) => state.game)
 
     const {logoutUser} = useAuthActions();
     const {getStats} = useStatsActions();
+
+    const gameOver = useMemo(() => {
+        const isOver = (!!winner || status !== GameStatus.ONGOING) && !!sessionId;
+        if (isOver) {
+            getStats();
+        }
+        return isOver;
+    }, [winner, status, sessionId])
 
     const winnerName = useMemo(() => {
         const userData = getUserData();
         return winner === Player.O ? 'AI' : (userData?.name || 'You');
     }, [winner])
+
+    const resultMesage = useMemo(() => {
+        if (gameOver && status === GameStatus.DRAW) {
+            return 'It\'s a draw! 💪';
+        }
+        return `Hurray! ${winnerName} won 🎉`;
+    }, [gameOver, status])
 
     useEffect(() => {
         getStats();
@@ -52,11 +67,11 @@ const Stats = () => {
                     Logout
                 </button>
             </div>
-            {!!winner && (
+            {gameOver && (
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20 mt-4">
-                    <h2 className="text-2xl font-bold text-white mb-6 text-center">Winner 🎉</h2>
+                    <h2 className="text-2xl font-bold text-white mb-6 text-center">Game results</h2>
                     <div className="space-y-4 text-white text-center">
-                        Hurray!, {winnerName} won this game
+                        {resultMesage}
                     </div>
                 </div>)}
         </div>
