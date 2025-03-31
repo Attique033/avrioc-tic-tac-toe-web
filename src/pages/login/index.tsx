@@ -1,30 +1,29 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useAuthActions} from "../../store/auth/useAuthActions.ts";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuthActions } from '../../store/auth/useAuthActions.ts';
 
 const Login: React.FC = () => {
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '',
     });
 
-    const {loginUser} = useAuthActions()
+    const { loginUser } = useAuthActions();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        loginUser(formData)
+        loginUser(formData);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
     return (
-        <div
-            className="flex w-screen h-screen items-center justify-center bg-gradient-to-br from-purple-500 via-purple-400 to-blue-400 p-4">
+        <div className="flex w-screen h-screen items-center justify-center bg-gradient-to-br from-purple-500 via-purple-400 to-blue-400 p-4">
             <div className="w-full max-w-md">
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
                     <h2 className="text-3xl font-bold text-white text-center mb-2">Welcome Back</h2>
@@ -32,7 +31,10 @@ const Login: React.FC = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label htmlFor="email" className="block text-left text-sm font-medium text-white mb-2">
+                            <label
+                                htmlFor="email"
+                                className="block text-left text-sm font-medium text-white mb-2"
+                            >
                                 Email
                             </label>
                             <input
@@ -48,7 +50,10 @@ const Login: React.FC = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="password" className="block text-left text-sm font-medium text-white mb-2">
+                            <label
+                                htmlFor="password"
+                                className="block text-left text-sm font-medium text-white mb-2"
+                            >
                                 Password
                             </label>
                             <input
@@ -74,8 +79,10 @@ const Login: React.FC = () => {
                     <div className="mt-6 text-center">
                         <p className="text-white">
                             Don't have an account?{' '}
-                            <Link to="/register"
-                                  className="text-white font-medium hover:text-white/80 transition-colors duration-200">
+                            <Link
+                                to="/register"
+                                className="text-white font-medium hover:text-white/80 transition-colors duration-200"
+                            >
                                 Sign up
                             </Link>
                         </p>

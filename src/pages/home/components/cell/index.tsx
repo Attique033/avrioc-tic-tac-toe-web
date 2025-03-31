@@ -1,22 +1,22 @@
-import React, {memo, useCallback, useMemo} from "react";
-import {useAppSelector} from "../../../../store";
-import {RootState} from "../../../../store/types";
-import {useGameActions} from "../../../../store/game/useGameActions.ts";
-import {Player} from "../../../../types";
+import React, { memo, useCallback, useMemo } from 'react';
+import { useAppSelector } from '../../../../store';
+import { RootState } from '../../../../store/types';
+import { useGameActions } from '../../../../store/game/useGameActions.ts';
+import { Player } from '../../../../types';
 
 interface CellProps {
     index: number;
     cell: number;
 }
 
-const Cell: React.FC = ({index, cell}: CellProps) => {
+const Cell: React.FC = ({ index, cell }: CellProps) => {
+    const { sessionId, winner, board, currentPlayer } = useAppSelector(
+        (state: RootState) => state.game
+    );
 
-    const {sessionId, winner, board, currentPlayer} = useAppSelector((state: RootState) => state.game);
-
-    const {makeMove} = useGameActions();
+    const { makeMove } = useGameActions();
 
     const handleCellClick = useCallback(() => {
-
         if (currentPlayer === Player.X) {
             return;
         }
@@ -45,7 +45,7 @@ const Cell: React.FC = ({index, cell}: CellProps) => {
                 </div>
             );
         } else if (cell === 1) {
-            return (<div className="w-12 h-12 rounded-full border-4 border-white"></div>)
+            return <div className="w-12 h-12 rounded-full border-4 border-white"></div>;
         }
         return '';
     }, [cell]);
@@ -58,7 +58,7 @@ const Cell: React.FC = ({index, cell}: CellProps) => {
         >
             {cellIcon}
         </div>
-    )
-}
+    );
+};
 
 export default memo(Cell);

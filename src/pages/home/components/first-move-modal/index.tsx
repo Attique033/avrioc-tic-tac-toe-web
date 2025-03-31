@@ -1,27 +1,33 @@
-import React, {memo, useCallback} from 'react';
-import {useGameActions} from '../../../../store/game/useGameActions';
+import React, { memo, useCallback } from 'react';
+import { useGameActions } from '../../../../store/game/useGameActions';
 
 interface FirstMoveModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const FirstMoveModal: React.FC<FirstMoveModalProps> = ({isOpen, onClose}: FirstMoveModalProps) => {
-    const {createNewSession} = useGameActions();
+const FirstMoveModal: React.FC<FirstMoveModalProps> = ({
+    isOpen,
+    onClose,
+}: FirstMoveModalProps) => {
+    const { createNewSession } = useGameActions();
 
-    const handleSelection = useCallback((selection: boolean) => {
-        createNewSession(selection);
-        onClose();
-    }, [createNewSession, onClose]);
+    const handleSelection = useCallback(
+        (selection: boolean) => {
+            createNewSession(selection);
+            onClose();
+        },
+        [createNewSession, onClose]
+    );
 
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div
-                className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">Would you like to make the first
-                    move?</h2>
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                    Would you like to make the first move?
+                </h2>
                 <div className="flex gap-4 justify-center">
                     <button
                         onClick={() => handleSelection(true)}

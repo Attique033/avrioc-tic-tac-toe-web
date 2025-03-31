@@ -1,9 +1,9 @@
-import {useEffect} from 'react';
-import {getSessionToken, getUserData} from '../utils/storage/Auth';
-import {useAuthActions} from '../store/auth/useAuthActions';
+import { useEffect } from 'react';
+import { getSessionToken, getUserData } from '../utils/storage/Auth';
+import { useAuthActions } from '../store/auth/useAuthActions';
 
 export const useTokenPersistence = () => {
-    const {setSession} = useAuthActions();
+    const { setSession } = useAuthActions();
 
     useEffect(() => {
         const checkToken = async () => {
@@ -20,8 +20,7 @@ export const useTokenPersistence = () => {
             } catch (error) {
                 console.error('Error checking token persistence:', error);
             } finally {
-                setTimeout(async () => {
-                }, 500);
+                setTimeout(async () => {}, 500);
             }
         };
         checkToken();

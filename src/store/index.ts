@@ -4,8 +4,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import combinerReducers from './reducers';
 
 export const store = configureStore({
-  reducer: combinerReducers,
-  preloadedState: {},
+    reducer: combinerReducers,
+    preloadedState: {},
 });
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

@@ -1,11 +1,11 @@
-import React, {useState} from "react";
-import Cell from "../cell";
-import {useAppSelector} from "../../../../store";
-import {RootState} from "../../../../store/types";
-import FirstMoveModal from "../first-move-modal";
+import React, { useState } from 'react';
+import Cell from '../cell';
+import { useAppSelector } from '../../../../store';
+import { RootState } from '../../../../store/types';
+import FirstMoveModal from '../first-move-modal';
 
 const Board: React.FC = () => {
-    const {board, moveInProgress} = useAppSelector((state: RootState) => state.game);
+    const { board, moveInProgress } = useAppSelector((state: RootState) => state.game);
     const [showFirstMoveModal, setShowFirstMoveModal] = useState(true);
 
     const newGame = () => {
@@ -14,11 +14,14 @@ const Board: React.FC = () => {
 
     return (
         <div className="w-full max-w-md">
-            <FirstMoveModal isOpen={showFirstMoveModal} onClose={() => setShowFirstMoveModal(false)}/>
+            <FirstMoveModal
+                isOpen={showFirstMoveModal}
+                onClose={() => setShowFirstMoveModal(false)}
+            />
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
                 <div className="grid grid-cols-3 gap-4 mb-6">
                     {board.flat(1).map((cell, index) => (
-                        <Cell key={index} index={index} cell={cell}/>
+                        <Cell key={index} index={index} cell={cell} />
                     ))}
                 </div>
                 <button

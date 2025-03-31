@@ -1,4 +1,4 @@
-import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import {
     EngineMoveResponse,
     GameSession,
@@ -9,8 +9,8 @@ import {
     RegisterUserRequest,
     UserSession,
 } from '../types';
-import {config as envConfig} from '../config';
-import {getSessionToken} from '../utils/storage/Auth';
+import { config as envConfig } from '../config';
+import { getSessionToken } from '../utils/storage/Auth';
 
 const api = axios.create({
     baseURL: envConfig.apiUrl,
@@ -60,13 +60,16 @@ export const gameService = {
     },
 
     pcMove: async (payload: MakeMoveRequest) => {
-        const response: AxiosResponse<EngineMoveResponse> = await api.post('/game/pc_move', payload);
+        const response: AxiosResponse<EngineMoveResponse> = await api.post(
+            '/game/pc_move',
+            payload
+        );
         return response.data;
     },
 
     getGameState: async (sessionId: string) => {
         const response: AxiosResponse<GameSession> = await api.get('/game', {
-            params: {sessionId},
+            params: { sessionId },
         });
         return response.data;
     },

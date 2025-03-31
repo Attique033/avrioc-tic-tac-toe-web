@@ -1,19 +1,18 @@
-import React, {useEffect, useMemo} from "react";
-import {useAuthActions} from "../../../../store/auth/useAuthActions.ts";
-import {useStatsActions} from "../../../../store/stats/useStatsActions.ts";
-import {useAppSelector} from "../../../../store";
-import {RootState} from "../../../../store/types";
-import {getUserData} from "../../../../utils/storage/Auth.ts";
-import {GameStatus, Player} from "../../../../types";
+import React, { useEffect, useMemo } from 'react';
+import { useAuthActions } from '../../../../store/auth/useAuthActions.ts';
+import { useStatsActions } from '../../../../store/stats/useStatsActions.ts';
+import { useAppSelector } from '../../../../store';
+import { RootState } from '../../../../store/types';
+import { getUserData } from '../../../../utils/storage/Auth.ts';
+import { GameStatus, Player } from '../../../../types';
 
 const Stats: React.FC = () => {
+    const { totalGames, wins, losses, draws } = useAppSelector((state: RootState) => state.stats);
+    const { winner, status } = useAppSelector((state: RootState) => state.game);
+    const { user } = useAppSelector((state: RootState) => state.auth);
 
-    const {totalGames, wins, losses, draws,} = useAppSelector((state: RootState) => state.stats)
-    const {winner, status} = useAppSelector((state: RootState) => state.game)
-    const {user} = useAppSelector((state: RootState) => state.auth)
-
-    const {logoutUser} = useAuthActions();
-    const {getStats} = useStatsActions();
+    const { logoutUser } = useAuthActions();
+    const { getStats } = useStatsActions();
 
     const gameOver = useMemo(() => {
         const isOver = !!winner || status === GameStatus.DRAW;
@@ -21,19 +20,19 @@ const Stats: React.FC = () => {
             getStats();
         }
         return isOver;
-    }, [winner, status, getStats])
+    }, [winner, status, getStats]);
 
     const winnerName = useMemo(() => {
         const userData = getUserData();
-        return winner === Player.O ? 'AI' : (userData?.name || 'You');
-    }, [winner])
+        return winner === Player.O ? 'AI' : userData?.name || 'You';
+    }, [winner]);
 
     const resultMessage = useMemo(() => {
         if (gameOver && status === GameStatus.DRAW) {
-            return 'It\'s a draw! 💪';
+            return "It's a draw! 💪";
         }
         return `Hurray! ${winnerName} won 🎉`;
-    }, [gameOver, status, winnerName])
+    }, [gameOver, status, winnerName]);
 
     useEffect(() => {
         getStats();
@@ -42,7 +41,9 @@ const Stats: React.FC = () => {
     return (
         <div className="w-full max-w-md md:flex-col-reverse">
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">{user.name}'s Statistics</h2>
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                    {user.name}'s Statistics
+                </h2>
                 <div className="space-y-4">
                     <div className="flex justify-between items-center text-white">
                         <span>Total Games</span>
@@ -71,12 +72,11 @@ const Stats: React.FC = () => {
             {gameOver && (
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20 mt-4">
                     <h2 className="text-2xl font-bold text-white mb-6 text-center">Game results</h2>
-                    <div className="space-y-4 text-white text-center">
-                        {resultMessage}
-                    </div>
-                </div>)}
+                    <div className="space-y-4 text-white text-center">{resultMessage}</div>
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Stats;

@@ -1,7 +1,7 @@
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 
-import {useAppDispatch} from '../index';
-import {getStats} from "./actions";
+import { useAppDispatch } from '../index';
+import { getStats } from './actions';
 
 export const useStatsActions = () => {
     const dispatch = useAppDispatch();

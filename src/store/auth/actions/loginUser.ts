@@ -1,9 +1,9 @@
-import {AppDispatch} from '../../types';
-import {authSlice} from '../index';
-import {authService} from '../../../services/api';
-import {LoginUserRequest, NotificationType} from '../../../types';
-import {notificationSlice} from '../../notification';
-import {saveUserData} from '../../../utils/storage/Auth';
+import { AppDispatch } from '../../types';
+import { authSlice } from '../index';
+import { authService } from '../../../services/api';
+import { LoginUserRequest, NotificationType } from '../../../types';
+import { notificationSlice } from '../../notification';
+import { saveUserData } from '../../../utils/storage/Auth';
 
 type LoginUser = (params: LoginUserRequest) => (dispatch: AppDispatch) => Promise<void>;
 
@@ -15,7 +15,8 @@ export const loginUser: LoginUser = (params) => {
             await saveUserData(data);
             dispatch(authSlice.actions.setSession(data));
         } catch (error) {
-            const errorMessage = error?.response?.data?.error || error?.message || 'Something went wrong';
+            const errorMessage =
+                error?.response?.data?.error || error?.message || 'Something went wrong';
             dispatch(
                 notificationSlice.actions.setNotification({
                     title: 'Login failed',

@@ -7,14 +7,14 @@ import { statsSlice } from '../../stats';
 type LogoutUser = () => (dispatch: AppDispatch) => Promise<void>;
 
 export const logoutUser: LogoutUser = () => {
-  return async (dispatch) => {
-    try {
-      clearSessionToken();
-      clearGameSessionId();
-      dispatch(statsSlice.actions.resetStats());
-      dispatch(authSlice.actions.logout());
-    } catch (error) {
-      console.error('Error during logout:', error);
-    }
-  };
+    return async (dispatch) => {
+        try {
+            clearSessionToken();
+            clearGameSessionId();
+            dispatch(statsSlice.actions.resetStats());
+            dispatch(authSlice.actions.logout());
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
+    };
 };

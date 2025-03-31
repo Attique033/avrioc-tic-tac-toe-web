@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
-import {useAppSelector} from "../../store";
-import {useNotificationActions} from "../../store/notification/useNotificationActions.ts";
-import {RootState} from "../../store/types";
-import {NotificationType} from "../../types";
+import React, { useEffect } from 'react';
+import { useAppSelector } from '../../store';
+import { useNotificationActions } from '../../store/notification/useNotificationActions.ts';
+import { RootState } from '../../store/types';
+import { NotificationType } from '../../types';
 
 const PROGRESS_DURATION = 3000;
 
 const Notification: React.FC = () => {
-    const {notification} = useAppSelector((state: RootState) => state.notification);
+    const { notification } = useAppSelector((state: RootState) => state.notification);
     const position = notification?.position || 'bottom-center';
 
-    const {resetNotification} = useNotificationActions()
+    const { resetNotification } = useNotificationActions();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -66,10 +66,14 @@ const Notification: React.FC = () => {
                     <span className="text-2xl text-white mr-3">{getIcon()}</span>
                     <div className="flex-1">
                         {notification.title && (
-                            <p className="text-white text-left font-medium m-0">{notification.title}</p>
+                            <p className="text-white text-left font-medium m-0">
+                                {notification.title}
+                            </p>
                         )}
                         {notification.message && (
-                            <p className="text-white/90 text-left text-sm mt-1 m-0">{notification.message}</p>
+                            <p className="text-white/90 text-left text-sm mt-1 m-0">
+                                {notification.message}
+                            </p>
                         )}
                     </div>
                 </div>

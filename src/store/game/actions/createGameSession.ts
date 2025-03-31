@@ -1,9 +1,9 @@
-import {AppDispatch} from '../../types';
-import {gameService} from '../../../services/api';
-import {gameSlice} from '../index';
-import {notificationSlice} from '../../notification';
-import {NotificationType} from '../../../types';
-import {makePCMove} from "./index";
+import { AppDispatch } from '../../types';
+import { gameService } from '../../../services/api';
+import { gameSlice } from '../index';
+import { notificationSlice } from '../../notification';
+import { NotificationType } from '../../../types';
+import { makePCMove } from './index';
 
 type CreateGameSession = (startWithPlayer: boolean) => (dispatch: AppDispatch) => Promise<void>;
 
@@ -14,10 +14,11 @@ const createGameSession: CreateGameSession = (startWithPlayer) => {
             const data = await gameService.createGameSession(startWithPlayer);
             dispatch(gameSlice.actions.setSessionId(data.id));
             if (!startWithPlayer) {
-                return dispatch(makePCMove())
+                return dispatch(makePCMove());
             }
         } catch (error) {
-            const errorMessage = error?.response?.data?.error || error?.message || 'Something went wrong';
+            const errorMessage =
+                error?.response?.data?.error || error?.message || 'Something went wrong';
             dispatch(
                 notificationSlice.actions.setNotification({
                     title: 'Creating game session failed',

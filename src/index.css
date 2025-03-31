@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,13 +13,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 #root {
     width: 100vw;
     min-height: 100vh;
     text-align: center;
 }
-
 
 body {
     margin: 0;
@@ -28,5 +26,3 @@ body {
     min-width: 320px;
     min-height: 100vh;
 }
-
-

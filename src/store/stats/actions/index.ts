@@ -1,3 +1,3 @@
 import getStats from './getStats';
 
-export {getStats}
+export { getStats };
