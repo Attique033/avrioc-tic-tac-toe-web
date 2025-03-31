@@ -2,7 +2,7 @@ import {useMemo} from 'react';
 
 import {useAppDispatch} from '../index';
 import {createGameSession} from './actions/createGameSession';
-import {Board, MakeMoveRequest} from '../../types';
+import {MakeMoveRequest} from '../../types';
 import {makeMove} from './actions/makeMove';
 import {gameSlice} from './index';
 
@@ -13,8 +13,8 @@ export const useGameActions = () => {
             createNewSession: (startWithPlayer: boolean) => {
                 dispatch(createGameSession(startWithPlayer));
             },
-            createSessionWithPlayerMove: (board: Board) => {
-                dispatch(createGameSession(true, board));
+            createSessionWithPlayerMove: () => {
+                dispatch(createGameSession(true));
             },
             makeMove: (payload: MakeMoveRequest) => {
                 dispatch(makeMove(payload));

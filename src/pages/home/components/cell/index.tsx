@@ -2,6 +2,7 @@ import {useCallback, useMemo} from "react";
 import {useAppSelector} from "../../../../store";
 import {RootState} from "../../../../store/types";
 import {useGameActions} from "../../../../store/game/useGameActions.ts";
+import {Player} from "../../../../types";
 
 interface CellProps {
     index: number;
@@ -10,7 +11,7 @@ interface CellProps {
 
 const Cell = ({index, cell}: CellProps) => {
 
-    const {sessionId, winner, board} = useAppSelector((state: RootState) => state.game);
+    const {sessionId, winner, board, currentPlayer} = useAppSelector((state: RootState) => state.game);
 
     const {makeMove, createSessionWithPlayerMove} = useGameActions();
 
@@ -25,15 +26,15 @@ const Cell = ({index, cell}: CellProps) => {
             r.map((cell, colIndex) => (rowIndex === row && colIndex === col ? -1 : cell))
         );
 
-        if (!sessionId) {
-            return createSessionWithPlayerMove(newBoard);
+        if (currentPlayer === Player.X) {
+            return;
         }
 
         makeMove({
             board: newBoard,
             sessionId: sessionId,
         });
-    }, [index, winner, board, sessionId, makeMove, createSessionWithPlayerMove]);
+    }, [index, winner, board, sessionId, currentPlayer, makeMove, createSessionWithPlayerMove]);
 
     const cellIcon = useMemo(() => {
         if (cell === -1) {

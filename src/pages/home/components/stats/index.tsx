@@ -10,6 +10,7 @@ const Stats = () => {
 
     const {totalGames, wins, losses, draws,} = useAppSelector((state: RootState) => state.stats)
     const {winner, status, sessionId} = useAppSelector((state: RootState) => state.game)
+    const {user} = useAppSelector((state: RootState) => state.auth)
 
     const {logoutUser} = useAuthActions();
     const {getStats} = useStatsActions();
@@ -41,7 +42,7 @@ const Stats = () => {
     return (
         <div className="w-full max-w-md md:flex-col-reverse">
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">Game Statistics</h2>
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">{user.name}'s Statistics</h2>
                 <div className="space-y-4">
                     <div className="flex justify-between items-center text-white">
                         <span>Total Games</span>
