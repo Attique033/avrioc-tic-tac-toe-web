@@ -24,7 +24,8 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div className="flex w-screen h-screen items-center justify-center bg-gradient-to-br from-purple-500 via-purple-400 to-blue-400 p-4">
+        <div
+            className="flex w-screen h-screen items-center justify-center bg-gradient-to-br from-purple-500 via-purple-400 to-blue-400 p-4">
             <div className="w-full max-w-md">
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
                     <h2 className="text-3xl font-bold text-white text-center mb-2">
@@ -83,6 +84,7 @@ const Register: React.FC = () => {
                                 type="password"
                                 id="password"
                                 name="password"
+                                minLength={8}
                                 value={formData.password}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50"

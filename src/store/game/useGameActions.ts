@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useAppDispatch } from '../index';
 import { MakeMoveRequest } from '../../types';
 import { gameSlice } from './index';
-import { createGameSession, makeMove } from './actions';
+import { checkGameState, createGameSession, makeMove } from './actions';
 
 export const useGameActions = () => {
     const dispatch = useAppDispatch();
@@ -14,6 +14,10 @@ export const useGameActions = () => {
             },
             makeMove: (payload: MakeMoveRequest) => {
                 dispatch(makeMove(payload));
+            },
+            restoreGameSession: (sessionId: number) => {
+                dispatch(gameSlice.actions.setSessionId(sessionId));
+                dispatch(checkGameState());
             },
             resetGameSession: () => {
                 dispatch(gameSlice.actions.resetGameSession());

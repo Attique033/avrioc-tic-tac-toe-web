@@ -13,7 +13,7 @@ export const registerUser: RegisterUser = (params) => {
             dispatch(authSlice.actions.setLoading(true));
             const data = await authService.register(params);
             await saveUserData(data);
-            window.location = '/';
+            window.location.href = '/';
             dispatch(authSlice.actions.setSession(data));
         } catch (error) {
             const errorMessage =
@@ -23,7 +23,7 @@ export const registerUser: RegisterUser = (params) => {
                     title: 'Registration failed',
                     message: errorMessage,
                     type: NotificationType.ERROR,
-                })
+                }),
             );
         } finally {
             dispatch(authSlice.actions.setLoading(false));

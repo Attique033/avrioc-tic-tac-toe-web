@@ -2,7 +2,7 @@ import { setCookie, deleteCookie, getCookie } from '../../services/storage';
 import { StorageKeys } from './types';
 
 export const saveGameSessionId = (value: string) => {
-    setCookie(StorageKeys.TOKEN, value);
+    setCookie(StorageKeys.GAME_SESSION_ID, value);
 };
 
 export const getGameSessionId = () => {

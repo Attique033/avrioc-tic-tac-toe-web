@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cell from '../cell';
 import { useAppSelector } from '../../../../store';
 import { RootState } from '../../../../store/types';
 import FirstMoveModal from '../first-move-modal';
+import { useGameActions } from '../../../../store/game/useGameActions';
+import { getGameSessionId } from '../../../../utils/storage/Game';
 
 const Board: React.FC = () => {
     const { board, moveInProgress } = useAppSelector((state: RootState) => state.game);
-    const [showFirstMoveModal, setShowFirstMoveModal] = useState(true);
+    const [showFirstMoveModal, setShowFirstMoveModal] = useState(false);
+
+    const { user } = useAppSelector(state => state.auth);
+
+    const { restoreGameSession } = useGameActions();
+
+    useEffect(() => {
+        const sessionId = getGameSessionId();
+        if (user?.id && !!sessionId) {
+            restoreGameSession(sessionId);
+        } else {
+            setShowFirstMoveModal(true);
+        }
+    }, [restoreGameSession, user?.id]);
 
     const newGame = () => {
         setShowFirstMoveModal(true);
