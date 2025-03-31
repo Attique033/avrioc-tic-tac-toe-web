@@ -9,19 +9,19 @@ import {GameStatus, Player} from "../../../../types";
 const Stats = () => {
 
     const {totalGames, wins, losses, draws,} = useAppSelector((state: RootState) => state.stats)
-    const {winner, status, sessionId} = useAppSelector((state: RootState) => state.game)
+    const {winner, status} = useAppSelector((state: RootState) => state.game)
     const {user} = useAppSelector((state: RootState) => state.auth)
 
     const {logoutUser} = useAuthActions();
     const {getStats} = useStatsActions();
 
     const gameOver = useMemo(() => {
-        const isOver = (!!winner || status !== GameStatus.ONGOING) && !!sessionId;
+        const isOver = !!winner || status === GameStatus.DRAW;
         if (isOver) {
             getStats();
         }
         return isOver;
-    }, [winner, status, sessionId])
+    }, [winner, status, getStats])
 
     const winnerName = useMemo(() => {
         const userData = getUserData();

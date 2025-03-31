@@ -17,6 +17,10 @@ const Cell = ({index, cell}: CellProps) => {
 
     const handleCellClick = useCallback(() => {
 
+        if (currentPlayer === Player.X) {
+            return;
+        }
+
         const row = Math.floor(index / 3);
         const col = index % 3;
         if (winner || !!board[row][col]) {
@@ -25,10 +29,6 @@ const Cell = ({index, cell}: CellProps) => {
         const newBoard = board.map((r: number[], rowIndex: number) =>
             r.map((cell, colIndex) => (rowIndex === row && colIndex === col ? -1 : cell))
         );
-
-        if (currentPlayer === Player.X) {
-            return;
-        }
 
         makeMove({
             board: newBoard,
