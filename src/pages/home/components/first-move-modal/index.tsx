@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo, useCallback} from 'react';
 import {useGameActions} from '../../../../store/game/useGameActions';
 
 interface FirstMoveModalProps {
@@ -9,10 +9,10 @@ interface FirstMoveModalProps {
 const FirstMoveModal: React.FC<FirstMoveModalProps> = ({isOpen, onClose}: FirstMoveModalProps) => {
     const {createNewSession} = useGameActions();
 
-    const handleSelection = (selection: boolean) => {
+    const handleSelection = useCallback((selection: boolean) => {
         createNewSession(selection);
         onClose();
-    };
+    }, [createNewSession, onClose]);
 
     if (!isOpen) return null;
 
@@ -41,4 +41,4 @@ const FirstMoveModal: React.FC<FirstMoveModalProps> = ({isOpen, onClose}: FirstM
     );
 };
 
-export default FirstMoveModal;
+export default memo(FirstMoveModal);

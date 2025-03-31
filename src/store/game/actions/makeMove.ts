@@ -1,12 +1,12 @@
 import {AppDispatch} from '../../types';
 import {gameService} from '../../../services/api';
 import {MakeMoveRequest, NotificationType} from '../../../types';
-import {checkGameState} from './checkGameState';
 import {notificationSlice} from '../../notification';
+import {checkGameState} from "./index.ts";
 
 type MakeMove = (payload: MakeMoveRequest) => (dispatch: AppDispatch) => Promise<void>;
 
-export const makeMove: MakeMove = (payload) => {
+const makeMove: MakeMove = (payload) => {
     return async (dispatch) => {
         try {
             await gameService.makeMove(payload);
@@ -23,3 +23,5 @@ export const makeMove: MakeMove = (payload) => {
         }
     };
 };
+
+export default makeMove;

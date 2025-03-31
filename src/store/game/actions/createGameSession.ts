@@ -1,13 +1,13 @@
 import {AppDispatch} from '../../types';
 import {gameService} from '../../../services/api';
 import {gameSlice} from '../index';
-import {makePCMove} from './makePCMove';
 import {notificationSlice} from '../../notification';
 import {NotificationType} from '../../../types';
+import {makePCMove} from "./index";
 
 type CreateGameSession = (startWithPlayer: boolean) => (dispatch: AppDispatch) => Promise<void>;
 
-export const createGameSession: CreateGameSession = (startWithPlayer) => {
+const createGameSession: CreateGameSession = (startWithPlayer) => {
     return async (dispatch) => {
         try {
             dispatch(gameSlice.actions.resetGameSession());
@@ -28,3 +28,5 @@ export const createGameSession: CreateGameSession = (startWithPlayer) => {
         }
     };
 };
+
+export default createGameSession;

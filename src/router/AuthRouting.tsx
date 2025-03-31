@@ -6,7 +6,7 @@ const Login = React.lazy(() => import('../pages/login'));
 const Register = React.lazy(() => import('../pages/register'));
 const Loader = React.lazy(() => import('../pages/loading'));
 
-const AuthRouting = () => {
+const AuthRouting: React.FC = () => {
 
     return (
         <Suspense fallback={<Loader/>}>

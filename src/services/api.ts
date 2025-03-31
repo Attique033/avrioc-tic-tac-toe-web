@@ -14,7 +14,6 @@ import {getSessionToken} from '../utils/storage/Auth';
 
 const api = axios.create({
     baseURL: envConfig.apiUrl,
-    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
     },

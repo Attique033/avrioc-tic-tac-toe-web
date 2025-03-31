@@ -1,12 +1,12 @@
 import {AppDispatch, GetState} from '../../types';
 import {gameService} from '../../../services/api';
-import {checkGameState} from './checkGameState.ts';
 import {notificationSlice} from '../../notification';
 import {NotificationType} from '../../../types';
+import {checkGameState} from "./index.ts";
 
 type MakePCMove = () => (dispatch: AppDispatch, getState: GetState) => Promise<void>;
 
-export const makePCMove: MakePCMove = () => {
+const makePCMove: MakePCMove = () => {
     return async (dispatch, getState) => {
         try {
             const {board, sessionId} = getState().game;
@@ -30,3 +30,5 @@ export const makePCMove: MakePCMove = () => {
         }
     };
 };
+
+export default makePCMove;

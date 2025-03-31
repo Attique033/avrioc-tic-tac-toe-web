@@ -1,4 +1,4 @@
-import {useCallback, useMemo} from "react";
+import React, {memo, useCallback, useMemo} from "react";
 import {useAppSelector} from "../../../../store";
 import {RootState} from "../../../../store/types";
 import {useGameActions} from "../../../../store/game/useGameActions.ts";
@@ -9,7 +9,7 @@ interface CellProps {
     cell: number;
 }
 
-const Cell = ({index, cell}: CellProps) => {
+const Cell: React.FC = ({index, cell}: CellProps) => {
 
     const {sessionId, winner, board, currentPlayer} = useAppSelector((state: RootState) => state.game);
 
@@ -61,4 +61,4 @@ const Cell = ({index, cell}: CellProps) => {
     )
 }
 
-export default Cell;
+export default memo(Cell);

@@ -1,10 +1,9 @@
 import {useMemo} from 'react';
 
 import {useAppDispatch} from '../index';
-import {createGameSession} from './actions/createGameSession';
 import {MakeMoveRequest} from '../../types';
-import {makeMove} from './actions/makeMove';
 import {gameSlice} from './index';
+import {createGameSession, makeMove} from "./actions";
 
 export const useGameActions = () => {
     const dispatch = useAppDispatch();

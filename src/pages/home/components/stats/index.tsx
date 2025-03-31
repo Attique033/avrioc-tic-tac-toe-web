@@ -1,4 +1,4 @@
-import {useEffect, useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useAuthActions} from "../../../../store/auth/useAuthActions.ts";
 import {useStatsActions} from "../../../../store/stats/useStatsActions.ts";
 import {useAppSelector} from "../../../../store";
@@ -6,7 +6,7 @@ import {RootState} from "../../../../store/types";
 import {getUserData} from "../../../../utils/storage/Auth.ts";
 import {GameStatus, Player} from "../../../../types";
 
-const Stats = () => {
+const Stats: React.FC = () => {
 
     const {totalGames, wins, losses, draws,} = useAppSelector((state: RootState) => state.stats)
     const {winner, status} = useAppSelector((state: RootState) => state.game)
@@ -28,12 +28,12 @@ const Stats = () => {
         return winner === Player.O ? 'AI' : (userData?.name || 'You');
     }, [winner])
 
-    const resultMesage = useMemo(() => {
+    const resultMessage = useMemo(() => {
         if (gameOver && status === GameStatus.DRAW) {
             return 'It\'s a draw! 💪';
         }
         return `Hurray! ${winnerName} won 🎉`;
-    }, [gameOver, status])
+    }, [gameOver, status, winnerName])
 
     useEffect(() => {
         getStats();
@@ -72,7 +72,7 @@ const Stats = () => {
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20 mt-4">
                     <h2 className="text-2xl font-bold text-white mb-6 text-center">Game results</h2>
                     <div className="space-y-4 text-white text-center">
-                        {resultMesage}
+                        {resultMessage}
                     </div>
                 </div>)}
         </div>

@@ -4,7 +4,7 @@ import AuthRouting from "./AuthRouting.tsx";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {useTokenPersistence} from "../hooks/useTokenPersistence.ts";
 
-const RootRouting = () => {
+const RootRouting: React.FC = () => {
 
     const {isAuthenticated} = useAuth();
 

@@ -1,14 +1,12 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import Cell from "../cell";
 import {useAppSelector} from "../../../../store";
 import {RootState} from "../../../../store/types";
 import FirstMoveModal from "../first-move-modal";
 
-const Board = () => {
+const Board: React.FC = () => {
     const {board, moveInProgress} = useAppSelector((state: RootState) => state.game);
     const [showFirstMoveModal, setShowFirstMoveModal] = useState(true);
-
-    const playBoard = board.flat(1);
 
     const newGame = () => {
         setShowFirstMoveModal(true);
@@ -19,7 +17,7 @@ const Board = () => {
             <FirstMoveModal isOpen={showFirstMoveModal} onClose={() => setShowFirstMoveModal(false)}/>
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                    {playBoard.map((cell, index) => (
+                    {board.flat(1).map((cell, index) => (
                         <Cell key={index} index={index} cell={cell}/>
                     ))}
                 </div>

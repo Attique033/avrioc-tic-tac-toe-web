@@ -4,7 +4,7 @@ import {Route, Routes} from 'react-router-dom';
 const Home = React.lazy(() => import('../pages/home'));
 const Loader = React.lazy(() => import('../pages/loading'));
 
-const AppRouting = () => {
+const AppRouting: React.FC = () => {
     return (
         <Suspense fallback={<Loader/>}>
             <Routes>
