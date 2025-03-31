@@ -13,9 +13,6 @@ export const useGameActions = () => {
             createNewSession: (startWithPlayer: boolean) => {
                 dispatch(createGameSession(startWithPlayer));
             },
-            createSessionWithPlayerMove: () => {
-                dispatch(createGameSession(true));
-            },
             makeMove: (payload: MakeMoveRequest) => {
                 dispatch(makeMove(payload));
             },

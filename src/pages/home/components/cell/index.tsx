@@ -13,7 +13,7 @@ const Cell = ({index, cell}: CellProps) => {
 
     const {sessionId, winner, board, currentPlayer} = useAppSelector((state: RootState) => state.game);
 
-    const {makeMove, createSessionWithPlayerMove} = useGameActions();
+    const {makeMove} = useGameActions();
 
     const handleCellClick = useCallback(() => {
 
@@ -34,7 +34,7 @@ const Cell = ({index, cell}: CellProps) => {
             board: newBoard,
             sessionId: sessionId,
         });
-    }, [index, winner, board, sessionId, currentPlayer, makeMove, createSessionWithPlayerMove]);
+    }, [index, winner, board, sessionId, currentPlayer, makeMove]);
 
     const cellIcon = useMemo(() => {
         if (cell === -1) {
