@@ -1,54 +1,133 @@
-# React + TypeScript + Vite
+# Tic-Tac-Toe Game - Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This is a Tic-Tac-Toe game application built as part of a take-home assessment. The project demonstrates
+modern web development practices, state management, and API integration. The application features web
+interface, allowing users to play against a computer opponent while tracking their game statistics.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Key Features
 
-## Expanding the ESLint configuration
+- 🎮 Interactive Tic-Tac-Toe game board
+- 👤 User authentication and registration
+- 📊 Real-time game statistics tracking
+- 🔄 Turn-based gameplay with computer opponent
+- 📱 Responsive design for both web and mobile
+- 🔒 Secure JWT-based authentication
+- 📈 Win/Loss/Draw statistics tracking
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technical Stack
 
-```js
-export default tseslint.config({
-    extends: [
-        // Remove ...tseslint.configs.recommended and replace with this
-        ...tseslint.configs.recommendedTypeChecked,
-        // Alternatively, use this for stricter rules
-        ...tseslint.configs.strictTypeChecked,
-        // Optionally, add this for stylistic rules
-        ...tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ['./tsconfig.node.json', './tsconfig.app.json'],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-});
+- **Frontend Framework**: React.js with TypeScript
+- **State Management**: Redux Toolkit
+- **Styling**: TailwindCSS
+- **Routing**: React Router DOM
+- **HTTP Client**: Axios
+- **Build Tool**: Vite
+- **Package Manager**: Yarn 3
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- Yarn package manager
+- Git
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Attique033/avrioc-tic-tac-toe-web.git
+cd avrioc-tic-tac-toe-web
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config({
-    plugins: {
-        // Add the react-x and react-dom plugins
-        'react-x': reactX,
-        'react-dom': reactDom,
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended typescript rules
-        ...reactX.configs['recommended-typescript'].rules,
-        ...reactDom.configs.recommended.rules,
-    },
-});
+```bash
+yarn install
 ```
+
+### Running the Application
+
+1. Start the development server:
+
+```bash
+yarn dev
+```
+
+2. Open your browser and navigate to `http://localhost:5173`
+
+### Building for Production
+
+```bash
+yarn build
+```
+
+## Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page components
+├── store/         # Redux store configuration
+├── store/         # Context provider for authentication
+├── services/      # API and storage service layer
+├── hooks/         # Custom hook for session management
+├── utils/         # Utility functions
+├── types/         # TypeScript type definitions
+├── router/        # Route configurations
+├── App.tsx        # Main application component
+└── main.tsx       # Application entry point
+```
+
+## Key Dependencies
+
+- `@reduxjs/toolkit`: State management
+- `react-router-dom`: Client-side routing
+- `axios`: HTTP client for API requests
+- `tailwindcss`: Utility-first CSS framework
+- `typescript`: Type safety and better developer experience
+
+## Development Features
+
+- TypeScript for type safety
+- ESLint for code linting
+- Prettier for code formatting
+- TailwindCSS for styling
+- Redux Toolkit for state management
+- React Router for navigation
+- Axios for API communication
+
+## Testing
+
+```bash
+# Run tests (when implemented)
+yarn test
+
+# Run linting
+yarn lint
+
+# Format code
+yarn format
+```
+
+## Security Considerations
+
+- JWT tokens are stored securely in cookies
+- API requests are authenticated
+- Input validations
+- API error handling
+- Protected routes
+
+## Performance Optimizations
+
+- Code splitting with React Router
+- Optimized bundle size with Vite
+- Efficient state management with Redux Toolkit
+- Responsive design for all screen sizes
+
+## License
+
+This project is part of a take-home assessment and is not licensed for public use.
