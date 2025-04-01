@@ -10,9 +10,8 @@ const AuthRouting: React.FC = () => {
     return (
         <Suspense fallback={<Loader />}>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="*" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="*" element={<NotFound />} />
             </Routes>
         </Suspense>
     );

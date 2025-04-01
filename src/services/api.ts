@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import {
     EngineMoveResponse,
     GameSession,
@@ -10,7 +10,7 @@ import {
     UserSession,
 } from '../types';
 import { config as envConfig } from '../config';
-import { getSessionToken } from '../utils/storage/Auth';
+import { clearSessionToken, getSessionToken } from '../utils/storage/Auth';
 
 const api = axios.create({
     baseURL: envConfig.apiUrl,
@@ -27,18 +27,25 @@ api.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
     return config;
 });
 
+api.interceptors.response.use(
+    (response: AxiosResponse) => response,
+    (error: AxiosError) => {
+        if (error.response.status === 401) {
+            clearSessionToken();
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
+
 export const authService = {
     login: async (params: LoginUserRequest): Promise<UserSession> => {
-        const response = await api.post<UserSession>('/auth/login', params, {
-            withCredentials: true,
-        });
+        const response = await api.post<UserSession>('/auth/login', params);
         return response.data;
     },
 
     register: async (params: RegisterUserRequest): Promise<UserSession> => {
-        const response = await api.post<UserSession>('/auth/register', params, {
-            withCredentials: true,
-        });
+        const response = await api.post<UserSession>('/auth/register', params);
         return response.data;
     },
 };
