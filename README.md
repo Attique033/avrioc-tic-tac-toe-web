@@ -26,6 +26,10 @@ interface, allowing users to play against a computer opponent while tracking the
 - **Build Tool**: Vite
 - **Package Manager**: Yarn 3
 
+## Demo video
+
+https://drive.google.com/file/d/1gZnmCuqBGkQz6Gk13k5VmyfdoqVsLQi2/view?usp=share_link
+
 ## Prerequisites
 
 - Node.js (v18 or higher)
