@@ -55,7 +55,9 @@ yarn install
 
 ### Running the Application
 
-1. Start the development server:
+1. Update the `apiUrl` in `src/config.ts` to point to your backend server.
+
+2. Start the development server:
 
 ```bash
 yarn dev
