@@ -28,7 +28,7 @@ interface, allowing users to play against a computer opponent while tracking the
 
 ## Demo video
 
-https://drive.google.com/file/d/1gZnmCuqBGkQz6Gk13k5VmyfdoqVsLQi2/view?usp=share_link
+https://drive.google.com/file/d/17BjlFxSJqCPqC5uojF-Q4n6WPADh5ENS/view?usp=share_link
 
 ## Prerequisites
 
